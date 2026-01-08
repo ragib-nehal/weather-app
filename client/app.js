@@ -1,4 +1,4 @@
-const apiKey = 'a984a45c7614df740db162aebfc25100';
+const apiKey = 'YOUR_API_KEY';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&q=';
 
 // Server endpoint for Gemini API (keeps API key safe on server)
