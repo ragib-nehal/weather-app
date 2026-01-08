@@ -1,5 +1,8 @@
-const apiKey = 'YOUR_API_KEY_HERE';
+const apiKey = 'a984a45c7614df740db162aebfc25100';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&q=';
+
+// Server endpoint for Gemini API (keeps API key safe on server)
+const outfitApiUrl = 'http://localhost:3000/api/outfit';
 
 const searchBox = document.querySelector('.search input');
 const searchBtn = document.querySelector('.search button');
@@ -29,6 +32,9 @@ async function responseStatusChecker(response) {
 
     document.querySelector('.error').style.display = 'none';
     document.querySelector('.weather').style.display = 'block';
+
+    // Get outfit recommendation from Gemini
+    getOutfitRecommendation(data);
   }
 }
 
@@ -49,6 +55,35 @@ function updateWeatherIcon(data, weatherIcon) {
     weatherIcon.src = "images/mist.png";
   }
 }
+
+// Gemini API call for outfit recommendation (via secure server)
+async function getOutfitRecommendation(weatherData) {
+  const temp = Math.round(weatherData.main.temp);
+  const humidity = weatherData.main.humidity;
+  const weather = weatherData.weather[0].main;
+  const city = weatherData.name;
+
+  try {
+    const response = await fetch(outfitApiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ temp, humidity, weather, city })
+    });
+
+    if (!response.ok) {
+      throw new Error('Server request failed');
+    }
+
+    const data = await response.json();
+    alert(`👕 Outfit Recommendation for ${city}:\n\n${data.recommendation}`);
+  } catch (error) {
+    console.error('Error getting outfit recommendation:', error);
+    alert('Could not get outfit recommendation. Make sure the server is running.');
+  }
+}
+
 // arrow func
 searchBtn.addEventListener('click', () => {
   checkWeather(searchBox.value);
