@@ -1,23 +1,46 @@
-# 🌤️ Weather App
+# 🌤️ Weather App with AI Outfit Recommendations
 
-A simple weather application that displays real-time weather data using the OpenWeatherMap API.
+A modern weather application that displays real-time weather data and provides smart, AI-generated outfit suggestions based on the local weather conditions.
 
 ## ✨ Features
 
-- Search weather by city name
-- Display temperature (°F), humidity, and wind speed
-- Dynamic weather icons
-- Error handling for invalid cities
-- Press Enter to search or press Search icon
+- **Real-time Weather**: Search by city to get current temperature (°F), humidity, wind speed, and weather conditions.
+- **AI Outfit Advisor**: Powered by Google Gemini, get practical and stylish unisex outfit recommendations tailored to the weather.
+- **Dynamic UI**: Beautiful weather icons and responsive card design.
+- **Secure**: Backend proxy server protects API keys.
 
-## 🚀 Setup
+## � Get API Keys
 
-1. Clone the repository
-2. Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
-3. Replace `YOUR_API_KEY_HERE` in `scripts.js` with your actual API key
-4. Open `index.html` in your browser
+- **OpenWeatherMap**: Sign up at [openweathermap.org](https://openweathermap.org/api) to get a free API key.
+- **Google Gemini**: Get a free API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+## �🚀 Quick Start
+
+1. **Install Dependencies**
+
+   ```bash
+   git clone <repository_url>
+   cd weather-app/server
+   npm install
+   ```
+
+2. **Configure API Keys**
+
+   - Create a `.env` file in the `server` folder:
+     ```env
+     GEMINI_API_KEY=your_gemini_key
+     ```
+   - Add your OpenWeatherMap key to `client/app.js`.
+
+3. **Run the App**
+   ```bash
+   node server.js
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🛠️ Technologies
 
-- HTML5, CSS3, JavaScript (ES6+)
-- OpenWeatherMap API
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Backend**: Node.js, Express
+- **AI Integration**: Google Gemini 1.5 Flash
+- **Data Source**: OpenWeatherMap API
